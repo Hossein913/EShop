@@ -101,7 +101,7 @@ namespace ProductManager_quiz_.Controllers
             //    ModelState.AddModelError("", "Invalid SignIn attempt");
             //    return View(LoginModel);
             //}
-
+            return null;
         }
 
 
