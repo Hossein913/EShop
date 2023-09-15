@@ -1,8 +1,8 @@
 ﻿using EShop.Domain.DTOs;
 using EShop.Domain.DTOs.Customer;
-using EShop.Domain.Entity;
+using Domain.Core.Entities;
 
-namespace Domain.Core.DataAccess
+namespace EShop.Domain.IRepositories
 {
     public interface IAdminRepository
     {
