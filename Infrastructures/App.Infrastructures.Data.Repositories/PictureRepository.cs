@@ -2,7 +2,7 @@
 using App.Domain.Core.DtoModels;
 using App.Domain.Core.DtoModels.Picture;
 using App.Domain.Core.DataAccess;
-namespace EShop.Data.Repository
+namespace App.Infrastructures.Ripositories
 {
     public class PictureRepository 
     {

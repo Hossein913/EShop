@@ -3,7 +3,6 @@ using App.Domain.Core.DtoModels.Category;
 using App.Domain.Core.DtoModels.Admin;
 using App.Domain.Core.DtoModels.Customer;
 using App.Domain.Core.Entities;
-using EShop.Domain.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using App.Domain.Core.DataAccess;
 using App.Infrastructures.Db.SqlServer.Ef;

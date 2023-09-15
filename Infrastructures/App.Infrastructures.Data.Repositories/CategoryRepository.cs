@@ -3,7 +3,7 @@ using App.Domain.Core.DataAccess;
 using App.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EShop.Data.Repository
+namespace App.Infrastructures.Ripositories
 {   
     public class CategoryRepository : ICategoryRepository
     {

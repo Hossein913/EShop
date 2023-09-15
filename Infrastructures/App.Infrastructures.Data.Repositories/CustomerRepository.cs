@@ -6,7 +6,7 @@ using App.Domain.Core.DataAccess;
 using App.Infrastructures.Db.SqlServer.Ef;
 using Microsoft.EntityFrameworkCore;
 
-namespace EShop.Data.Repository
+namespace App.Infrastructures.Ripositories
 {
     public class CustomerRepository : ICustomerRepository
     {
