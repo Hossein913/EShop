@@ -1,4 +1,4 @@
-﻿namespace EShop.Domain.DTOs.Picture
+﻿namespace App.Domain.Core.DtoModels.Picture
 {
     public class PictureEditDto
     {

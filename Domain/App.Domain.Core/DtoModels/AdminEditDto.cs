@@ -1,5 +1,4 @@
-﻿namespace EShop.Domain.DTOs
-{
+﻿namespace App.Domain.Core.DtoModels { 
     public class AdminEditDto
     {
         public string Id { get; set; }
