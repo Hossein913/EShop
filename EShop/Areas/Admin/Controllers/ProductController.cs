@@ -1,5 +1,6 @@
 ﻿using Eshop.Domain.core.AppService;
 using Eshop.Domain.core.Dtos.Category;
+using Eshop.Domain.core.Dtos.Products;
 using EShop.Domain.core.IServices.CategoryService.Command;
 using EShop.Domain.core.IServices.CategoryService.Queries;
 using EShop.ViewModels;
@@ -15,10 +16,12 @@ namespace EShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IProductAppservices _productAppservices ;
         public ProductController(
-            IWebHostEnvironment hostingEnvironment )
+            IWebHostEnvironment hostingEnvironment, IProductAppservices productAppservices)
         {
             _hostingEnvironment = hostingEnvironment;
+            _productAppservices = productAppservices;
         }
 
 
@@ -40,24 +43,27 @@ namespace EShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductViewModel Model)
+        public async Task<ActionResult> Create(ProductViewModel Model)
         {
 
             if (!ModelState.IsValid)
                 return View(Model);
 
-            if (Model.PhotoFile != null && Model.PhotoFile.Length > 0)
+            if (Model.PhotoFiles != null && Model.PhotoFiles.Count > 0)
             {
                 var wwwrootPath = _hostingEnvironment.WebRootPath;
-                var uploadPath = Path.Combine(wwwrootPath, "uploads");
+                var uploadPath = Path.Combine(wwwrootPath, "upload/Img/Product");
 
-                CategoryAddDto categoryAddDto = new CategoryAddDto
+                ProductAddDto productAddDto = new ProductAddDto
                 {
                     Name = Model.Name!,
+                    Price = Model.Price,
+                    Quntity = Model.Quntity,
+                    CategoryId = Model.CategoryId,
                     Description = Model.Description!
                 };
 
-                //await _categoryAppServices.CreateCategory(categoryAddDto, Model.PhotoFile, uploadPath);
+                await _productAppservices.CreateProduct(productAddDto, Model.PhotoFiles, uploadPath);
 
                 return View();
             }

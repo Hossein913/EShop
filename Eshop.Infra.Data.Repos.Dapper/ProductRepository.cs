@@ -1,6 +1,7 @@
 ﻿
 
 using Eshop.Domain.core.DataAccess.EfRipository;
+using Eshop.Domain.core.Dtos.Products;
 using Eshop.Domain.core.Entities;
 using Eshop.Infra.Db_SqlServer.EF;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +17,22 @@ namespace Eshop.Infra.Data.Repos.Ef
             _context = context;
         }
 
-        public async Task Create(Product product)
+        public async Task<int> Create(ProductAddDto productAddDto)
         {
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
+            Product product = new Product
+            { 
+             Name = productAddDto.Name,
+             CategoryId = productAddDto.CategoryId,
+             Quntity = productAddDto.Quntity,
+             Price = productAddDto.Price,   
+            };
 
+            await _context.Products.AddAsync(product);
+            var result = await _context.SaveChangesAsync();
+            if (result != 0)
+                return product.Id;
+
+            return 0;
         }
 
         public async Task Delete(int productId)
@@ -40,8 +52,16 @@ namespace Eshop.Infra.Data.Repos.Ef
             return await _context.Products.FindAsync(productId);
         }
 
-        public async Task Update(Product product)
+        public async Task Update(ProductEditDto productEditDto)
         {
+            Product product = new Product
+            {
+                Id = productEditDto.Id,
+                Name = productEditDto.Name,
+                CategoryId = productEditDto.CategoryId,
+                Quntity = productEditDto.Quntity,
+                Price = productEditDto.Price,
+            };
             _context.Products.Update(product);
             int number = await _context.SaveChangesAsync();
         }

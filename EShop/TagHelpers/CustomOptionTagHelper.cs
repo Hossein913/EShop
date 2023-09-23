@@ -1,4 +1,4 @@
-﻿//using Mapster;
+﻿using Mapster;
 using EShop.Domain.core.IServices.CategoryService.Queries;
 using EShop.Domain.Services.CategoryService.Queries;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -58,9 +58,8 @@ namespace UiEShop.TagHelpers
             if (formDataEntry != null)
             {
                 //selectedValues = ((Microsoft.AspNetCore.Mvc.TagHelpers.Internal.CurrentValues)formDataEntry).Values;
-                //selectedValues = (formDataEntry.Adapt<CurrentValues>()).Values;
-                CurrentValues currentValues = (CurrentValues)formDataEntry;
-                selectedValues = currentValues.Values;
+                selectedValues = (formDataEntry.Adapt<CurrentValues>()).Values;
+
 
                 if (selectedValues != null && selectedValues.Count != 0)
                 {

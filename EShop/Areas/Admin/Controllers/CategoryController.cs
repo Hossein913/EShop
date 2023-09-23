@@ -67,7 +67,7 @@ namespace EShop.Areas.Admin.Controllers
             if (Model.PhotoFile != null && Model.PhotoFile.Length > 0)
             {
                 var wwwrootPath = _hostingEnvironment.WebRootPath;
-                var uploadPath = Path.Combine(wwwrootPath, "uploads");
+                var uploadPath = Path.Combine(wwwrootPath, "upload/Img/Category");
 
                 CategoryAddDto categoryAddDto = new CategoryAddDto
                 {

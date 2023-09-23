@@ -136,13 +136,13 @@ namespace Eshop
 
             //var result = await authenticate.Login(LoginModel);
 
-            if (result != null && roles.Contains("Admin"))
+            if (result != null )
             {
-                return RedirectToAction("index", "Panel", new { area = "Admin"});
-            }
-            else if (result != null && roles.Contains("Customer"))
-            {
+                if (result != null && roles.Contains("Customer"))
                 return RedirectToAction("index", "Home");
+                else
+                return RedirectToAction("index", "Panel", new { area = "Admin"});
+            
             }
             else 
             { 

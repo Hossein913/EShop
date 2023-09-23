@@ -19,5 +19,5 @@ public partial class Product
 
     public ICollection<Picture> Pictures { get; set; } = new List<Picture>();
     public Order? Order { get; set; }
-    public Category Categories { get; set; } = new Category();
+    public Category? Categories { get; set; }
 }

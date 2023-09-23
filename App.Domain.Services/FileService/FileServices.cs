@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eshop.Domain.core.Entities;
 using Eshop.Domain.core.IServices.FileService;
 using Microsoft.AspNetCore.Http;
 
@@ -32,8 +33,11 @@ namespace EShop.Domain.Services.File
             {
                 await file.CopyToAsync(stream);
             }
-
-            return "uploads/" + fileFullName;
+            if (uploadPath.Contains("Category"))
+            {
+                return "upload/Img/Category" + fileFullName;
+            }
+            return "upload/Img/Product" + fileFullName;
         }
 
         public Task<bool> FileDeleteAsync()

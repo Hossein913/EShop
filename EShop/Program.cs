@@ -1,84 +1,19 @@
 
-using Eshop.Domain.core.AppService;
-using Eshop.Domain.core.DataAccess.EfRipository;
 using Eshop.Domain.core.Entities;
-using Eshop.Domain.core.IServices.FileService;
-using Eshop.Domain.core.IServices.PictureService.Commands;
-using Eshop.Domain.core.IServices.PictureService.Queries;
-using Eshop.Domain.Services.PictureService.Queries;
-using Eshop.Infra.Data.Repos.Ef;
 using Eshop.Infra.Db_SqlServer.EF;
-using EShop.Domain.AppServices.CategoryAppServce;
-using EShop.Domain.AppServices.ProductAppService;
-using EShop.Domain.core.IServices.Authenticate;
-using EShop.Domain.core.IServices.CategoryService.Command;
-using EShop.Domain.core.IServices.CategoryService.Queries;
-using EShop.Domain.core.IServices.CustomerService.Command;
-using EShop.Domain.IRepositories;
-using EShop.Domain.Services.CategoryService.Command;
-using EShop.Domain.Services.CategoryService.Queries;
-using EShop.Domain.Services.CustomerService.Command;
-using EShop.Domain.Services.File;
-using EShop.Domain.Services.PictureService.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Routing.Tree;
 using Microsoft.EntityFrameworkCore;
+using UiEShop;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-# region Injections
-
-# region Addmin
-builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-#endregion
-
-# region AppUser ----Role
-builder.Services.AddScoped<IUserManagerRepository, UserManagerRepository>();
-#endregion
-
-# region Cart
-builder.Services.AddScoped<ICartRepository, CartRepository>();
-#endregion
-
-# region Category
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryQueryService, CategoryQueryService>();
-builder.Services.AddScoped<ICategoryCommandService, CategoryCommandService>();
-builder.Services.AddScoped<ICategoryAppServices, CategoryAppServices>();
-#endregion
-
-# region Customer
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ICustomerCommandService, CustomerCommandService>();
-#endregion
-
-# region File
-builder.Services.AddScoped<IFileServices, FileServices>();
-#endregion
-
-# region Order
-#endregion
-
-# region Picture
-builder.Services.AddScoped<IPictureRepository, PictureRepository>();
-builder.Services.AddScoped<IPictureQueryService, PictureQueryService>();
-builder.Services.AddScoped<IPictureCommandService, PictureCommandService>();
-#endregion
-
-# region Product
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductAppservices, ProductAppServices>();
-#endregion
-
-#endregion
-
-
-
+builder.Services.AddInjections();
 
 //--DbContext
 builder.Services.AddDbContext<EshopContext>(option =>

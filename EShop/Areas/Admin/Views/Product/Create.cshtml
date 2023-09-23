@@ -39,8 +39,9 @@
                     </div>
 
                     <div class="custom-file">
-                        <label asp-for="@Model.Photo" class="form-label"></label>
-                        <input asp-for="@Model.PhotoFile" class="form-control" />
+                        <label asp-for="@Model.PhotoFiles" class="form-label"></label>
+                        <input asp-for="@Model.PhotoFiles" class="form-control" />
+                        <span asp-validation-for="@Model.PhotoFiles" class="text-danger"></span>
                     </div>
 
                     <div class="form-group col-md-12">

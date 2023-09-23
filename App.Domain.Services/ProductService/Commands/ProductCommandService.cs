@@ -1,5 +1,7 @@
 ﻿
 
+using Eshop.Domain.core.DataAccess.EfRipository;
+using Eshop.Domain.core.Dtos.Category;
 using Eshop.Domain.core.Dtos.Products;
 using EShop.Domain.core.IServices.ProductService.Commands;
 
@@ -7,9 +9,12 @@ namespace EShop.Domain.Services.ProductService.Commands
 {
     public class ProductCommandService : IProductCommandService
     {
-        public Task<bool> AddPicture(int PictureId, int item)
+
+        protected readonly IProductRepository _productRepository;
+
+        public ProductCommandService(IProductRepository productRepository)
         {
-            throw new NotImplementedException();
+            _productRepository = productRepository;
         }
 
         public Task<bool> AddProductToCartByProductid(int customerid, int productid)
@@ -17,9 +22,10 @@ namespace EShop.Domain.Services.ProductService.Commands
             throw new NotImplementedException();
         }
 
-        public Task<bool> CreateProduct(ProductAddDto product)
+        public async Task<int> CreateProduct(ProductAddDto productAddDto)
         {
-            throw new NotImplementedException();
+            var productId = await _productRepository.Create(productAddDto);
+            return productId;
         }
 
         public Task<bool> DeleteProduct(int productId)
